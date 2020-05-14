@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class rsa extends algorythms {
 
-    private static BigInteger p,q,n,fn, minLimit = new BigInteger("20"), maxLimit = new BigInteger("5000000"), e, d, m, c, user_input;
+    private static BigInteger p,q,n,fn, minLimit = new BigInteger("20"), maxLimit = new BigInteger("50000000000000"), e, d, m, c, user_input;
     private static Scanner sc = new Scanner(System.in);
 
     private static void generateKey() {
