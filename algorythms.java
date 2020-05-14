@@ -3,6 +3,12 @@ import java.util.Random;
 
 public class algorythms {
 
+    /**
+     * Generates a BigInteger number.
+     * @param minLimit is the minimum number which the generated number can be.
+     * @param maxLimit is the maximum number which the generated number can be.
+     * @return is the number generated.
+     */
     protected static BigInteger generateBigInteger(BigInteger minLimit, BigInteger maxLimit) {
         BigInteger bigInteger = maxLimit.subtract(minLimit);
 
@@ -18,6 +24,11 @@ public class algorythms {
         return num;
     }
 
+    /**
+     * Extended Euclidean Algorythm for the greatest common divisor and more.
+     * @param num1 and @param num2 are the two numbers we are investigating.
+     * @return an Array with a size of 3, which includes the greatest common divisor and an x,y value.
+     */
     protected static BigInteger[] eEA(BigInteger num1, BigInteger num2) {
         BigInteger help, qk, xk, yk, xk_prev, yk_prev, xk_next, yk_next, lnko, num0, k = BigInteger.ZERO, lnko_index, x, y;
 
@@ -60,6 +71,14 @@ public class algorythms {
         return back;
     } 
 
+    /**
+     * Fast modular exponentiation for the case if the power is a power of 2.
+     * @param a the base.
+     * @param b is the power.
+     * @param m is the modulus.
+     * @param nth_pow is an information to know how is it needed to calculate the modulars.
+     * @return an Array with the modulars from 1 to the 2^@param nth_pow.
+     */
     protected static BigInteger[] fMEBinary(BigInteger a, BigInteger b, BigInteger m, BigInteger nth_pow) {
         BigInteger[] values = new BigInteger[nth_pow.intValue() + 1];
 
@@ -70,6 +89,14 @@ public class algorythms {
         return values;
     }
     
+
+    /**
+     * Fast modular exponentiation for the formula: a^b mod m.
+     * @param a the base.
+     * @param b is the power.
+     * @param m is the modulus.
+     * @return the modular.
+     */
     protected static BigInteger fME(BigInteger a, BigInteger b, BigInteger m) {
         BigInteger help = b, nth_pow = BigInteger.ZERO, multies = BigInteger.ONE;
         BigInteger[] result;
@@ -107,6 +134,12 @@ public class algorythms {
         return multies.mod(m);
     }
 
+    /**
+     * Miller Rabin prime test.
+     * @param n is the number getting checked if it is a prime or a composite number.
+     * @param a is a base we are using to check.
+     * @return true if the number is probably a prime, false if the number is composite number.
+     */
     protected static boolean mR(BigInteger n, BigInteger a) {
         BigInteger s = BigInteger.ZERO,d,num;
 
@@ -134,10 +167,6 @@ public class algorythms {
             if (fME(a, BigInteger.TWO.pow(r).multiply(d).add(BigInteger.ONE), n).equals(BigInteger.ZERO))
                 return false;
         }
-
-        /* for (BigInteger r = BigInteger.ZERO; r.compareTo(s) == -1; r = r.add(BigInteger.ONE))
-            if (a.pow(BigInteger.TWO.pow(r.intValue()).multiply(d).intValue()).add(BigInteger.ONE).mod(n).equals(BigInteger.ZERO))
-                return true; */
 
         return false;
     }
