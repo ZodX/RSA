@@ -111,7 +111,7 @@ public class algorythms {
         BigInteger s = BigInteger.ZERO,d,num;
 
         if (!(a.compareTo(n) == -1))
-            throw new ArithmeticException("Invalid bases are given");
+            throw new ArithmeticException("Invalid bas is given");
         if (BigInteger.ZERO.equals(n.mod(BigInteger.TWO)))
             throw new ArithmeticException("Invalid n is given");
 
