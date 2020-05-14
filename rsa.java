@@ -6,6 +6,9 @@ public class rsa extends algorythms {
     private static BigInteger p,q,n,fn, minLimit = new BigInteger("20"), maxLimit = new BigInteger("50000000000000"), e, d, m, c, user_input;
     private static Scanner sc = new Scanner(System.in);
 
+    /**
+     * Generates the public, and the private key for the algorythm.
+     */
     private static void generateKey() {
         boolean gotTwoPrimes = false;
         BigInteger[] back = new BigInteger[3];
