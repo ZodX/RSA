@@ -10,8 +10,6 @@ public class rsa extends algorythms {
         boolean gotTwoPrimes = false;
         BigInteger[] back = new BigInteger[3];
         System.out.println("Generating p and q...");
-        p = generateBigInteger(minLimit, maxLimit);
-        q = generateBigInteger(minLimit, maxLimit);
         while (gotTwoPrimes == false) {
             while (true) {
                 p = generateBigInteger(minLimit, maxLimit);
