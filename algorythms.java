@@ -126,13 +126,18 @@ public class algorythms {
                 break;
             }
         }
-        
-        if (a.pow(d.intValue()).mod(n).equals(BigInteger.ONE))
-            return true;
 
-        for (BigInteger r = BigInteger.ZERO; r.compareTo(s) == -1; r = r.add(BigInteger.ONE))
+        if (fME(a, d, n).equals(BigInteger.ONE))
+            return true;
+            
+        for (int r = 0; r < s.intValue(); r++) {
+            if (fME(a, BigInteger.TWO.pow(r).multiply(d).add(BigInteger.ONE), n).equals(BigInteger.ZERO))
+                return false;
+        }
+
+        /* for (BigInteger r = BigInteger.ZERO; r.compareTo(s) == -1; r = r.add(BigInteger.ONE))
             if (a.pow(BigInteger.TWO.pow(r.intValue()).multiply(d).intValue()).add(BigInteger.ONE).mod(n).equals(BigInteger.ZERO))
-                return true;
+                return true; */
 
         return false;
     }
