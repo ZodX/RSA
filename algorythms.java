@@ -3,9 +3,7 @@ import java.util.Random;
 
 public class algorythms {
 
-    public static BigInteger createBigInt() {
-        BigInteger maxLimit = new BigInteger("100");   //5000000000000
-        BigInteger minLimit = new BigInteger("10");   //25000000000
+    protected static BigInteger generateBigInteger(BigInteger minLimit, BigInteger maxLimit) {
         BigInteger bigInteger = maxLimit.subtract(minLimit);
 
         Random randNum = new Random();
@@ -17,12 +15,11 @@ public class algorythms {
         if (num.compareTo(bigInteger) >= 0)
             num = num.mod(bigInteger).add(minLimit);
         
-        System.out.println("The random BigInteger = "+num);
         return num;
     }
 
-    public static BigInteger[] eEA(BigInteger num1, BigInteger num2) {
-        BigInteger help, qk, xk, yk, xk_prev, yk_prev, xk_next, yk_next, lnko, num0, k = BigInteger.ZERO, lnko_index;
+    protected static BigInteger[] eEA(BigInteger num1, BigInteger num2) {
+        BigInteger help, qk, xk, yk, xk_prev, yk_prev, xk_next, yk_next, lnko, num0, k = BigInteger.ZERO, lnko_index, x, y;
 
         qk = num1.divide(num2);
         xk_prev = BigInteger.ONE;
@@ -52,17 +49,18 @@ public class algorythms {
         }
         lnko_index = k;
         lnko = num1;
-        System.out.println("lnko: " + lnko);
-        System.out.println("xk: " + xk + "\nyk: " + yk);
+
+        x = new BigInteger("-1").pow(lnko_index.intValue()).multiply(xk);
+        y = new BigInteger("-1").pow(lnko_index.add(BigInteger.ONE).intValue()).multiply(yk);
 
         BigInteger[] back = new BigInteger[3];
         back[0] = lnko;
-        back[1] = xk;
-        back[2] = yk;
+        back[1] = x;
+        back[2] = y;
         return back;
     } 
 
-    public static BigInteger[] fMEBinary(BigInteger a, BigInteger b, BigInteger m, BigInteger nth_pow) {
+    protected static BigInteger[] fMEBinary(BigInteger a, BigInteger b, BigInteger m, BigInteger nth_pow) {
         BigInteger[] values = new BigInteger[nth_pow.intValue() + 1];
 
         values[0] = a.pow(BigInteger.ONE.intValue()).mod(m);
@@ -72,7 +70,7 @@ public class algorythms {
         return values;
     }
     
-    public static BigInteger fME(BigInteger a, BigInteger b, BigInteger m) {
+    protected static BigInteger fME(BigInteger a, BigInteger b, BigInteger m) {
         BigInteger help = b, nth_pow = BigInteger.ZERO, multies = BigInteger.ONE;
         BigInteger[] result;
         boolean isPow = false;
@@ -109,7 +107,7 @@ public class algorythms {
         return multies.mod(m);
     }
 
-    public static boolean mR(BigInteger n, BigInteger a) {
+    protected static boolean mR(BigInteger n, BigInteger a) {
         BigInteger s = BigInteger.ZERO,d,num;
 
         if (!(a.compareTo(n) == -1))
@@ -118,7 +116,6 @@ public class algorythms {
             throw new ArithmeticException("Invalid n is given");
 
         num = n.subtract(BigInteger.ONE);
-        System.out.println(num);
 
         while (true) {
             if (num.mod(BigInteger.TWO).equals(BigInteger.ZERO)) {
@@ -131,31 +128,12 @@ public class algorythms {
         }
         
         if (a.pow(d.intValue()).mod(n).equals(BigInteger.ONE))
-            return false;
+            return true;
 
         for (BigInteger r = BigInteger.ZERO; r.compareTo(s) == -1; r = r.add(BigInteger.ONE))
             if (a.pow(BigInteger.TWO.pow(r.intValue()).multiply(d).intValue()).add(BigInteger.ONE).mod(n).equals(BigInteger.ZERO))
-                return false;
+                return true;
 
-        System.out.println(s + " " + d);
-        System.out.println("Osszetett");
-        return true;
-    }
-
-    public static void main(String[] args) {
-        /* BigInteger a = createBigInt();
-        BigInteger b = createBigInt();
-        BigInteger eAdatok[] = eEA(a, b); 
-        System.out.println(eAdatok); */
-
-        /* BigInteger a = new BigInteger("13");
-        BigInteger b = new BigInteger("1024");
-        BigInteger m = new BigInteger("17");
-
-        System.out.println(fME(a, b, m)); */
-
-        BigInteger n = new BigInteger("3363");
-        BigInteger a = new BigInteger("2");
-        System.out.println(mR(n, a));
+        return false;
     }
 }
