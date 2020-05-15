@@ -33,7 +33,7 @@ public class rsa extends algorythms {
     
         System.out.println("Generating e...");
         while (true) {
-            // Generate an even number.
+            // Generate an odd number.
             while (true) {
                 e = generateBigInteger(new BigInteger("3"), new BigInteger("50"));
                 if (e.mod(BigInteger.TWO).equals(BigInteger.ONE))
